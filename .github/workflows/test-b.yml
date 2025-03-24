@@ -1,0 +1,11 @@
+name: test-b
+
+on:
+  pull_request:
+
+jobs:
+  test-b:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test B Step
+        run: echo "Running test B"
