@@ -10,6 +10,10 @@ policy:
         - or:
             - Workflow .github/workflows/test-b.yml succeeded or skipped
             - default to approval
+        - or:
+          - Workflow .github/workflows/test-failing.yml succeeded or skipped
+          - default to approval
+
 approval_rules:
   - name: Workflow .github/workflows/test-a.yml succeeded or skipped
     if:
@@ -24,6 +28,7 @@ approval_rules:
             - success
           workflows:
             - .github/workflows/test-a.yml
+
   - name: Workflow .github/workflows/test-b.yml succeeded or skipped
     if:
       file_not_deleted:
@@ -37,4 +42,17 @@ approval_rules:
             - success
           workflows:
             - .github/workflows/test-b.yml
+
+  - name: Workflow .github/workflows/test-failing.yml succeeded or skipped
+    if:
+      file_not_deleted:
+        paths:
+          - ^\.github/workflows/test-failing\.yml$
+    requires:
+      conditions:
+        has_workflow_result:
+          conclusions: [skipped, success]
+          workflows:
+            - .github/workflows/test-failing.yml
+            
   - name: default to approval
