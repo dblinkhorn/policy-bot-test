@@ -5,15 +5,11 @@ policy:
   approval:
     - and:
         - or:
-            - and:
-                - Workflow .github/workflows/test-a.yml succeeded or skipped
-            - and:
-                - default to approval
+            - Workflow test-a.yml succeeded or skipped
+            - default to approval
         - or:
-            - and:
-                - Workflow .github/workflows/test-b.yml succeeded or skipped
-            - and:
-                - default to approval
+            - Workflow test-b.yml succeeded or skipped
+            - default to approval
 approval_rules:
   - name: Workflow .github/workflows/test-a.yml succeeded or skipped
     if:
