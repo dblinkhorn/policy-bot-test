@@ -8,6 +8,7 @@ policy:
             - Workflow .github/workflows/test-a.yml succeeded or skipped
         - or:
             - Workflow .github/workflows/test-b.yml succeeded or skipped
+        - default to approval
 approval_rules:
   - name: Workflow .github/workflows/test-a.yml succeeded or skipped
     if:
