@@ -47,11 +47,13 @@ approval_rules:
     if:
       file_not_deleted:
         paths:
-          - ^\.github/workflows/test-failing\.yml$
+          - ^\.github\/workflows\/test-failing\.yml$
     requires:
       conditions:
         has_workflow_result:
-          conclusions: [skipped, success]
+          conclusions:
+            - skipped
+            - success
           workflows:
             - .github/workflows/test-failing.yml
             
